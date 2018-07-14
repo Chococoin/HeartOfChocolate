@@ -13,6 +13,10 @@ contract HeartOfChocolate {
     // bool confirmed; (TODO)
   }
 
+  mapping(uint => Developers) public developer;
+
+  uint public developersCount;
+
   struct Tasks {
     uint id;
     uint issue;
@@ -20,5 +24,15 @@ contract HeartOfChocolate {
     uint difficulty;
     uint credits;
     bool done;
+  }
+
+  function addDeveloper (address _address, string _name) private {
+    developersCount ++;
+    developer[developersCount] = Developers(developersCount, _name, 0, 0, _address);
+  }
+
+  constructor() public {
+    addDeveloper(0x63D1dac8095db5a3468E2361E56bB907B169191B, "Johameli Muñoz");
+    addDeveloper(0x3e40B1f112C981eF563a02D815071eC4531C3a2f, "German Lugo");
   }
 }
